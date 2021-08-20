@@ -14,7 +14,7 @@ export const signUpUser = (userData: any, history: any) => (dispatch: any) => {
     .post('/users/register', userData)
     .then((res) => {
       dispatch({ type: CLEAR_ERRORS });
-      history.push('/login'); //redirecting to index page after login success
+      history.push('/signIn'); //redirecting to index page after signIn success
     })
     .catch((err) => {
       console.log(err);
@@ -36,7 +36,7 @@ export const loginUser = (userData: any, history: any) => (dispatch: any) => {
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
       console.log('success');
-      history.push('/'); //redirecting to index page after login success
+      history.push('/'); //redirecting to index page after signIn success
     })
     .catch((err) => {
       console.log(err);
@@ -68,5 +68,5 @@ export const logoutUser = () => (dispatch: any) => {
   dispatch({
     type: SET_UNAUTHENTICATED
   });
-  window.location.href = '/login'; //redirect to login page
+  window.location.href = '/signIn'; //redirect to login page
 };

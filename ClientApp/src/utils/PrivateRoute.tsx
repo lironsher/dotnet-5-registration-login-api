@@ -14,7 +14,7 @@ const PrivateRoute: React.SFC<MyRouteProps> = ({
   <Route
     {...rest}
     render={(props) =>
-      authenticated ? <Component {...props} /> : <Redirect to="/login" />
+      authenticated ? <Component {...props} /> : <Redirect to="/signIn" />
     }
   />
 );

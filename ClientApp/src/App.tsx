@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Login from './components/Login';
 import Index from './components/Index';
 import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 import GuestRoute from './utils/GuestRoute';
 import PrivateRoute from './utils/PrivateRoute';
 //redux stuff
@@ -21,7 +21,7 @@ const App: React.FC = () => {
         <Router>
           <Switch>
             <PrivateRoute exact path="/" component={Index} />
-            <GuestRoute exact path="/login" component={Login} />
+            <GuestRoute exact path="/signIn" component={SignIn} />
             <GuestRoute exact path="/signUp" component={SignUp} />
           </Switch>
         </Router>
