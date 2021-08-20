@@ -22,6 +22,7 @@ interface ErrorsObj {
 }
 
 function Login(props: any) {
+  //const classes = useStyles();
   const [values, setValues] = useState({
     email: '',
     password: ''
@@ -40,7 +41,7 @@ function Login(props: any) {
     //your client side validation here
     //after success validation
     const userData = {
-      email: values.email,
+      username: values.email,
       password: values.password
     };
     props.loginUser(userData, props.history);
@@ -71,12 +72,7 @@ function Login(props: any) {
           spacing={3}
         >
           <Grid item md={3}>
-            <img
-              src={
-                'https://www.designfreelogoonline.com/wp-content/uploads/2017/05/000840-Infinity-logo-maker-Free-infinito-Logo-design-06.png'
-              }
-              alt="My Logo"
-            />
+            <img src={''} alt="My Logo" />
           </Grid>
           <Grid item md={9}>
             <Paper>
@@ -117,7 +113,7 @@ function Login(props: any) {
                     />
                   </Grid>
                   <Grid item sm={6} md={6}>
-                    <Link to="#">Forgot password?</Link>
+                    <Link to="/signUp">SignUp ?</Link>
                   </Grid>
                 </Grid>
                 <Button
@@ -125,6 +121,7 @@ function Login(props: any) {
                   variant="contained"
                   color="primary"
                   disabled={loading}
+                  onClick={handleSubmit}
                 >
                   Login
                   {loading && (

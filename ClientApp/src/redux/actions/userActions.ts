@@ -7,13 +7,31 @@ import {
   LOADING_USER
 } from '../types';
 import axios from 'axios';
+
+export const signUpUser = (userData: any, history: any) => (dispatch: any) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post('/users/register', userData)
+    .then((res) => {
+      dispatch({ type: CLEAR_ERRORS });
+      history.push('/login'); //redirecting to index page after login success
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
 export const loginUser = (userData: any, history: any) => (dispatch: any) => {
   dispatch({ type: LOADING_UI });
   axios
-    .post('login', userData)
+    .post('/users/authenticate', userData)
     .then((res) => {
-      const token = `Bearer ${res.data.token}`;
-      localStorage.setItem('token', `Bearer ${res.data.token}`); //setting token to local storage
+      const token = `Bearer ${res.data.jwtToken}`;
+      localStorage.setItem('token', `Bearer ${res.data.jwtToken}`); //setting token to local storage
       axios.defaults.headers.common['Authorization'] = token; //setting authorize token to header in axios
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
@@ -32,7 +50,7 @@ export const loginUser = (userData: any, history: any) => (dispatch: any) => {
 export const getUserData = () => (dispatch: any) => {
   dispatch({ type: LOADING_USER });
   axios
-    .get('/user')
+    .get('/data/secured')
     .then((res) => {
       console.log('user data', res.data);
       dispatch({

@@ -3,12 +3,14 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Index from './components/Index';
+import SignUp from './components/SignUp';
 import GuestRoute from './utils/GuestRoute';
 import PrivateRoute from './utils/PrivateRoute';
 //redux stuff
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { CheckAuthentication } from './utils/CheckAuthentication';
+
 const App: React.FC = () => {
   useEffect(() => {
     CheckAuthentication();
@@ -20,6 +22,7 @@ const App: React.FC = () => {
           <Switch>
             <PrivateRoute exact path="/" component={Index} />
             <GuestRoute exact path="/login" component={Login} />
+            <GuestRoute exact path="/signUp" component={SignUp} />
           </Switch>
         </Router>
       </Provider>
